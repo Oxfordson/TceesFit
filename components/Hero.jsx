@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Hero() {
@@ -14,6 +13,12 @@ export default function Hero() {
       setIsMuted(!isMuted);
     }
   };
+
+  const whatsappNumber = "2347078617494";
+  const defaultMessage = encodeURIComponent(
+    "Hello Kunmi Luxe! ✨ I would like to book an appointment."
+  );
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${defaultMessage}`;
 
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 pb-16">
@@ -52,6 +57,7 @@ export default function Hero() {
       {useVideoBackground && (
         <button
           onClick={toggleSound}
+          type="button"
           aria-label={isMuted ? "Unmute video" : "Mute video"}
           className="absolute bottom-8 right-6 sm:right-10 z-30 flex items-center space-x-2 bg-black/40 hover:bg-black/70 backdrop-blur-md border border-brand-gold/30 text-white px-4 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-lg active:scale-95 cursor-pointer"
         >
@@ -113,19 +119,19 @@ export default function Hero() {
         {/* Dual Call-to-Action */}
         <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
           <a
-            href="https://wa.me/2347078617494?text=Hello%20Kunmi%20Luxe!%20%E2%9C%A8%20I%20would%20like%20to%20book%20an%20appointment."
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-brand-dark hover:text-white font-bold transition-all rounded-full uppercase tracking-widest text-xs sm:text-sm text-center shadow-xl active:scale-95 duration-200"
           >
             Book Appointment
           </a>
-          <Link 
+          <a 
             href="/#collections" 
             className="px-8 py-4 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-brand-gold/40 text-brand-gold-light hover:text-white rounded-full transition-all uppercase tracking-widest text-xs sm:text-sm font-semibold text-center shadow-xl active:scale-95 duration-200"
           >
             Shop Extensions
-          </Link>
+          </a>
         </div>
 
       </div>

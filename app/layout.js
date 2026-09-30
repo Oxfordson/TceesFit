@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata = {
+  metadataBase: new URL('https://kunmiluxe.vercel.app'),
   title: 'Kunmi Luxe | Premium Hair Extensions, Installs & Revamps in Lagos',
   description: 'Lagos\' premier destination for premium hair extensions (French & Italian curls, Bone Straight), flawless luxury installs, and transformative wig revamps.',
   keywords: 'Hair Extensions Lagos, Luxury Wig Installs Nigeria, Wig Revamps Lagos, Bone Straight Hair Nigeria, Kunmi Luxe, Premium Hair Vendor Lagos',
@@ -17,6 +18,20 @@ export const metadata = {
     siteName: 'Kunmi Luxe',
     locale: 'en_NG',
     type: 'website',
+    images: [
+      {
+        url: '/images/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Kunmi Luxe | Premium Hair Extensions, Installs & Revamps',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kunmi Luxe | Premium Hair Extensions, Installs & Revamps in Lagos',
+    description: 'Lagos\' premier destination for premium hair extensions, flawless luxury installs, and transformative wig revamps.',
+    images: ['/images/opengraph-image.png'],
   },
   robots: {
     index: true,
