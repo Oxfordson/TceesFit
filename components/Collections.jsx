@@ -68,7 +68,7 @@ export default function Collections() {
                   alt={item.name}
                   fill
                   quality={100}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 1536px) 100vw, (max-width: 2752px) 50vw, 33vw"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   priority={item.id === 1}
                 />
