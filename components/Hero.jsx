@@ -141,10 +141,47 @@ export default function Hero() {
         onClick={toggleSound}
         type="button"
         aria-label={isMuted ? "Unmute video sound" : "Mute video sound"}
-        className="absolute top-28 right-5 sm:right-8 z-30 flex items-center space-x-2 bg-black/60 hover:bg-black/90 backdrop-blur-md border border-brand-gold/50 text-white px-3.5 py-1.5 rounded-full text-[11px]  tracking-widest transition-all duration-300 shadow-xl active:scale-95 cursor-pointer"
+        className="absolute top-28 right-5 sm:right-8 z-30 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 bg-black/60 hover:bg-black/90 backdrop-blur-md border border-brand-gold/50 text-white rounded-full transition-all duration-300 shadow-xl active:scale-95 cursor-pointer group"
       >
-        <span className={`w-2 h-2 rounded-full ${isMuted ? "bg-white/40" : "bg-brand-gold animate-ping"}`} />
-        <span>{isMuted ? "Audio Off" : "Audio On"}</span>
+        {isMuted ? (
+          // Speaker Muted / Off Icon
+          <svg 
+            className="w-4 h-4 text-white/70 group-hover:text-brand-gold transition-colors" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            aria-hidden="true"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" 
+            />
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" 
+            />
+          </svg>
+        ) : (
+          // Speaker Playing / Sound Waves Icon
+          <svg 
+            className="w-4 h-4 text-brand-gold animate-pulse" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            aria-hidden="true"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" 
+            />
+          </svg>
+        )}
       </button>
 
       {/* ================= CENTER CONTENT ================= */}
