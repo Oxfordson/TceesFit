@@ -77,7 +77,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="md:col-span-3">
-            <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-brand-gold font-bold mb-4">
+            <h4 className="font-mono text-xs  tracking-[0.2em] text-brand-gold font-bold mb-4">
               Collections
             </h4>
             <ul className="space-y-3 text-sm font-light text-white/80">
@@ -90,7 +90,7 @@ export default function Footer() {
 
           {/* Atelier Details */}
           <div className="md:col-span-4">
-            <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-brand-gold font-bold mb-4">
+            <h4 className="font-mono text-xs  tracking-[0.2em] text-brand-gold font-bold mb-4">
               Atelier & Contact
             </h4>
             <div className="space-y-3 text-sm font-light text-white/80">
@@ -102,7 +102,7 @@ export default function Footer() {
               href="https://wa.me/2348167762470"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-6 px-6 py-2.5 bg-brand-gold hover:bg-brand-gold-dark text-brand-dark font-bold text-xs uppercase tracking-widest transition-all rounded-none"
+              className="inline-block mt-6 px-6 py-2.5 bg-brand-gold hover:bg-brand-gold-dark text-brand-dark font-bold text-xs  tracking-widest transition-all rounded-none"
             >
               Chat With Stylist
             </a>

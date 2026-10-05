@@ -47,7 +47,7 @@ export default function Services() {
         {/* Editorial Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-8 border-b border-brand-dark/10 gap-6">
           <div>
-            <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-mono font-semibold block mb-2">
+            <span className="text-brand-gold  tracking-[0.3em] text-xs font-mono font-semibold block mb-2">
               Bespoke & Tailoring Solutions
             </span>
             <h2 className="text-3xl sm:text-5xl font-serif text-brand-dark leading-tight">
@@ -69,7 +69,7 @@ export default function Services() {
             >
               <div>
                 <div className="flex items-center justify-between mb-8">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-brand-gold font-bold">
+                  <span className="font-mono text-[11px]  tracking-widest text-brand-gold font-bold">
                     {svc.category}
                   </span>
                   <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-gold flex items-center justify-center group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
@@ -91,7 +91,7 @@ export default function Services() {
                   {svc.tags.map((tag) => (
                     <span 
                       key={tag} 
-                      className="text-[10px] uppercase font-mono tracking-wider px-2.5 py-1 rounded bg-brand-dark/5 text-brand-dark/70"
+                      className="text-[10px]  font-mono tracking-wider px-2.5 py-1 rounded bg-brand-dark/5 text-brand-dark/70"
                     >
                       {tag}
                     </span>
@@ -102,7 +102,7 @@ export default function Services() {
                   href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Tcee's Fit! I would like to inquire about your ${svc.title} services.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-bold text-brand-dark group-hover:text-brand-gold transition-colors"
+                  className="inline-flex items-center gap-2 text-xs  tracking-[0.18em] font-bold text-brand-dark group-hover:text-brand-gold transition-colors"
                 >
                   Consult Tailor 
                   <span className="transform group-hover:translate-x-1.5 transition-transform duration-300">&rarr;</span>

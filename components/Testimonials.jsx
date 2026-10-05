@@ -45,7 +45,7 @@ export default function Testimonials() {
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-brand-gold uppercase tracking-[0.3em] text-xs font-mono font-semibold block mb-3">
+          <span className="text-brand-gold  tracking-[0.3em] text-xs font-mono font-semibold block mb-3">
             Real Fit Stories
           </span>
           <h2 className="text-3xl sm:text-5xl font-serif text-brand-dark leading-tight">
@@ -83,7 +83,7 @@ export default function Testimonials() {
                   />
                 )}
                 
-                <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-[10px] font-mono tracking-widest uppercase bg-black/60 backdrop-blur-md border border-white/20 text-brand-gold-light">
+                <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-[10px] font-mono tracking-widest  bg-black/60 backdrop-blur-md border border-white/20 text-brand-gold-light">
                   {item.itemOrdered}
                 </span>
               </div>
@@ -106,7 +106,7 @@ export default function Testimonials() {
                 <div className="pt-4 border-t border-brand-dark/10 flex items-center justify-between">
                   <div>
                     <h4 className="font-serif text-brand-dark text-base font-bold">{item.author}</h4>
-                    <span className="text-[11px] uppercase tracking-wider text-brand-dark/50 block">
+                    <span className="text-[11px]  tracking-wider text-brand-dark/50 block">
                       {item.role}
                     </span>
                   </div>
