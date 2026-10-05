@@ -1,56 +1,139 @@
+"use client";
+import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Collections() {
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const categories = [
+    { id: 'all', label: 'All Silhouettes' },
+    { id: 'rtw', label: 'Ready-to-Wear Co-Ords' },
+    { id: 'owanbe', label: 'Owanbe & Bubu' },
+    { id: 'kiddies', label: 'Little Tcee’s' },
+  ];
+
   const collections = [
     {
       id: 1,
-      name: "French Curls",
-      tagline: "Bouncy. Full. Effortlessly Gorgeous.",
-      image: "/images/woman_smiling_with_curly_hair_french_curl.jpg",
-      badge: "Best Seller",
+      name: "The Palazzo Co-Ord",
+      category: "rtw",
+      silhouette: "Two-Piece Relaxed Fit",
+      fabric: "Breathable Crepe & Silk Blend",
+      tagline: "Effortless confidence from morning errands to evening socials.",
+      image: "/images/collections-palazzo.jpg",
+      badge: "Signature Cut",
+      serial: "TC-RTW-01",
     },
     {
       id: 2,
-      name: "Italian Curls",
-      tagline: "Defined curls. Luxurious Volume.",
-      image: "/images/woman_wearing_hair_extensions_italian_curl.jpg",
-      badge: "Trending",
+      name: "Heritage Royal Bubu",
+      category: "owanbe",
+      silhouette: "Voluminous Grandeur",
+      fabric: "Hand-Embroidered Brocade & Organza",
+      tagline: "Regal presence designed for high-profile Nigerian ceremonies.",
+      image: "/images/collections-bubu.jpg",
+      badge: "Owanbe Luxe",
+      serial: "TC-OWB-04",
     },
     {
       id: 3,
-      name: "Bone Straight",
-      tagline: "Sleek. Silky. Timelessly Beautiful.",
-      image: "/images/woman_wearing_straight_hair_extensions_bone_straight.jpg",
-      badge: "Signature",
+      name: "Petite Belle Gown",
+      category: "kiddies",
+      silhouette: "Pleated Kiddies Ball Gown",
+      fabric: "Featherlight Cotton-Lined Tulle",
+      tagline: "Playful charm with gentle, irritation-free tailoring.",
+      image: "/images/collections-kiddies.jpg",
+      badge: "Little Tcee’s",
+      serial: "TC-KID-02",
+    },
+    {
+      id: 4,
+      name: "Hourglass Corset Midi",
+      category: "owanbe",
+      silhouette: "Tailored Sculpt Dress",
+      fabric: "Stretch Jacquard with Gold Finishings",
+      tagline: "Precision cinching that celebrates natural curves seamlessly.",
+      image: "/images/collections-dress.jpg",
+      badge: "Evening Edit",
+      serial: "TC-OWB-08",
+    },
+    {
+      id: 5,
+      name: "Luxe Linen Resort Set",
+      category: "rtw",
+      silhouette: "Tailored Shorts & Fluid Shirt",
+      fabric: "100% Pure Woven Linen",
+      tagline: "Laidback luxury engineered for tropical weather and resort getaways.",
+      image: "/images/collections-linen.jpg",
+      badge: "New Release",
+      serial: "TC-RTW-09",
+    },
+    {
+      id: 6,
+      name: "Mini Co-Ord Trousers Set",
+      category: "kiddies",
+      silhouette: "Smart Kiddies Trouser & Top",
+      fabric: "Ultra-Soft Stretch Cotton",
+      tagline: "Smart, photogenic casual wear made durable for active young girls.",
+      image: "/images/collections-kiddies-trousers.jpg",
+      badge: "Kiddies Best",
+      serial: "TC-KID-05",
     }
   ];
 
-  const whatsappNumber = "2347078617494";
+  const whatsappNumber = "2348167762470";
+
+  const filteredCollections = activeCategory === 'all' 
+    ? collections 
+    : collections.filter(item => item.category === activeCategory);
 
   return (
-    <section id="collections" className="py-24 bg-brand-dark text-white relative overflow-hidden">
-      {/* Background Accent Ambient Glow */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="collections" className="py-24 sm:py-32 bg-brand-dark text-white relative overflow-hidden">
+      {/* Background Architectural Grid & Subtle Radial Gold Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
+      <div className="absolute -top-32 right-1/4 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-32 left-1/4 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Heading */}
-        <div className="text-center mb-16 md:mb-20">
-          <span className="text-brand-gold uppercase tracking-[0.25em] text-xs font-semibold">
-            Premium Extensions
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mt-3 mb-4">
-            Shop Our Collection
-          </h2>
-          <div className="w-20 h-[1.5px] bg-brand-gold mx-auto"></div>
+        {/* Section Heading & Category Switcher */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+              <span className="text-brand-gold  tracking-[0.3em] text-xs font-mono">
+                The Curated Catalogue &bull; Ile-Ife
+              </span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-white leading-tight">
+              Curated Cuts. <br />
+              <span className="italic font-light text-brand-gold-light">Uncompromised Grace.</span>
+            </h2>
+          </div>
+
+          {/* Interactive Category Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2 p-1.5 bg-white/5 border border-white/10 backdrop-blur-md rounded-full self-start md:self-end">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-5 py-2 rounded-full text-xs font-medium tracking-wider  transition-all duration-300 ${
+                  activeCategory === cat.id
+                    ? 'bg-brand-gold text-brand-dark font-bold shadow-lg scale-105'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Collections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {collections.map((item) => {
+        {/* Dynamic Editorial Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredCollections.map((item, index) => {
             const orderMessage = encodeURIComponent(
-              `Hello Kunmi Luxe! ✨ I'm interested in ordering your ${item.name} hair extensions. Please share available lengths and pricing.`
+              `Hello Tcee's Fit! ✨ I would like to order / inquire about the "${item.name}" (${item.serial}).`
             );
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${orderMessage}`;
 
@@ -60,56 +143,90 @@ export default function Collections() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative h-[480px] sm:h-[520px] md:h-[550px] w-full rounded-2xl overflow-hidden shadow-xl border border-white/10 block active:scale-[0.99] transition-transform duration-300"
+                className="group relative h-[520px] sm:h-[560px] w-full rounded-2xl overflow-hidden bg-black/40 border border-white/15 block transition-all duration-500 hover:border-brand-gold/60 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)]"
               >
-                {/* Background Image - High-Res Sharp Optimization */}
+                {/* Product Imagery */}
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
-                  quality={100}
-                  sizes="(max-width: 1536px) 100vw, (max-width: 2752px) 50vw, 33vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  priority={item.id === 1}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover object-center filter brightness-90 group-hover:scale-110 group-hover:brightness-100 transition-all duration-700 ease-out"
                 />
 
-                {/* Layered Gradient Overlay for Text Legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/15 group-hover:via-black/45 transition-colors duration-500"></div>
+                {/* Layered Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent group-hover:via-black/20 transition-all duration-500 pointer-events-none" />
 
-                {/* Top Badge */}
-                <div className="absolute top-5 left-5 z-20">
-                  <span className="px-3.5 py-1.5 rounded-full text-[11px] uppercase tracking-widest font-semibold bg-black/60 backdrop-blur-md border border-brand-gold/40 text-brand-gold-light shadow-sm">
+                {/* Top Bar: Serial ID & Status Tag */}
+                <div className="absolute top-5 inset-x-5 flex justify-between items-center z-20 pointer-events-none">
+                  <span className="font-mono text-[11px] tracking-widest text-brand-gold-light  bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/30">
+                    {item.serial}
+                  </span>
+                  <span className="px-3.5 py-1 rounded-full text-[10px]  tracking-widest font-bold bg-white/15 backdrop-blur-md text-white border border-white/20">
                     {item.badge}
                   </span>
                 </div>
 
-                {/* Bottom Overlay Content */}
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 z-20 flex flex-col justify-end">
-                  <h3 className="text-2xl sm:text-3xl font-serif text-white mb-2 group-hover:text-brand-gold-light transition-colors duration-300">
+                {/* Bottom Content & Spec Card */}
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 z-20 flex flex-col justify-end">
+                  
+                  {/* Subtle Sub-label */}
+                  <span className="text-[11px]  tracking-[0.2em] text-brand-gold font-mono mb-1 block">
+                    {item.silhouette}
+                  </span>
+
+                  <h3 className="text-2xl sm:text-3xl font-serif text-white mb-2 leading-tight group-hover:text-brand-gold-light transition-colors">
                     {item.name}
                   </h3>
                   
-                  <p className="text-white/85 font-light text-sm italic mb-6 leading-relaxed">
+                  <p className="text-white/80 font-light text-xs sm:text-sm mb-4 line-clamp-2 leading-relaxed">
                     {item.tagline}
                   </p>
 
-                  {/* Interactive Button: Order + WhatsApp Icon */}
-                  <div className="inline-flex items-center space-x-2.5 w-fit px-5 py-2.5 rounded-full bg-white/10 hover:bg-brand-gold backdrop-blur-md border border-brand-gold/40 text-brand-gold-light hover:text-brand-dark transition-all duration-300 shadow-md">
-                    <span className="text-xs uppercase tracking-widest font-semibold">Order</span>
-                    <svg
-                      className="w-4 h-4 fill-current transition-transform duration-300 group-hover:scale-110"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.397-10.416c-5.523 0-10 4.477-10 10 0 1.765.459 3.424 1.264 4.871l-1.342 4.904 5.039-1.321c1.401.767 3.003 1.204 4.707 1.204 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/>
-                    </svg>
+                  {/* Micro Specs Accordion on Hover */}
+                  <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden mb-4 border-t border-white/15 pt-3">
+                    <p className="text-[11px] text-white/60 tracking-wider">
+                      <strong className="text-brand-gold font-normal">Fabric:</strong> {item.fabric}
+                    </p>
                   </div>
+
+                  {/* Order Button with Custom Arrow Icon */}
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="inline-flex items-center gap-2 text-xs  tracking-[0.18em] font-bold text-brand-gold group-hover:text-white transition-colors">
+                      Custom Tailor This 
+                      <span className="transform group-hover:translate-x-1.5 transition-transform duration-300">&rarr;</span>
+                    </span>
+                    <span className="text-[10px]  font-mono tracking-widest text-white/40 group-hover:text-brand-gold transition-colors">
+                      Delivery in 3–5 Days
+                    </span>
+                  </div>
+
                 </div>
 
-                {/* Border Glow on Hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-brand-gold/50 transition-colors duration-500 pointer-events-none"></div>
+                {/* Interactive Inner Border Accent */}
+                <div className="absolute inset-0 border border-brand-gold/0 group-hover:border-brand-gold/40 rounded-2xl transition-all duration-500 pointer-events-none" />
               </a>
             );
           })}
+        </div>
+
+        {/* Global CTA Footer Note */}
+        <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-white/[0.03] via-brand-gold/[0.08] to-white/[0.03] border border-brand-gold/20 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6">
+          <div>
+            <h4 className="font-serif text-2xl text-white">Have a unique fabric or custom idea?</h4>
+            <p className="text-white/70 text-sm font-light mt-1">
+              Send us your sketch, sample reference, or native material for bespoke styling in Ile-Ife.
+            </p>
+          </div>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello Tcee's Fit! I have my own fabric and would love to consult on a bespoke custom dress.")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3.5 bg-brand-gold text-brand-dark hover:bg-brand-gold-light font-bold text-xs  tracking-[0.16em] rounded-full transition-all duration-300 shadow-xl active:scale-95 whitespace-nowrap"
+          >
+            Bespoke Consultation
+          </a>
         </div>
 
       </div>

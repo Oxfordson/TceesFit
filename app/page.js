@@ -1,8 +1,8 @@
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Collections from '@/components/Collections';
+import Collections from '@/components/Collections'; // Great for ready-to-wear and kiddies
 import Testimonials from '@/components/Testimonials';
-import Services from '@/components/Services';
+import Services from '@/components/Services'; // Great for highlighting bespoke/Owanbe tailoring
 
 export default function Home() {
   return (
@@ -10,8 +10,8 @@ export default function Home() {
       <Hero />
       <About />
       <Collections />
-      <Testimonials />
       <Services />
+      <Testimonials />
     </>
   );
 }

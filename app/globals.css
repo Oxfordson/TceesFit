@@ -1,16 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  /* Metallic Champagne & Warm Gold Palette */
-  --color-brand-light: #faf8f5;        /* Soft cream luxury background */
-  --color-brand-gold: #c5a059;         /* Core refined luxury gold */
-  --color-brand-gold-light: #dfc288;   /* Bright champagne highlight */
-  --color-brand-gold-dark: #9d7b38;    /* Deep burnished antique gold */
-  --color-brand-dark: #1a1614;         /* Rich espresso noir */
-  
-  /* Retain aliases so legacy brand classes resolve to gold */
-  --color-brand-rose: #c5a059;
-  --color-brand-accent: #dfc288;
+  /* Tcee's Fit Brand Palette: Gold, Black, White */
+  --color-brand-light: #ffffff;        /* Pure white */
+  --color-brand-gold: #d4af37;         /* Sophisticated fashion gold */
+  --color-brand-gold-light: #f3e5ab;   /* Soft gold highlight */
+  --color-brand-gold-dark: #aa8c2c;    /* Deep elegant gold */
+  --color-brand-dark: #0a0a0a;         /* Rich black */
   
   --font-sans: var(--font-inter), sans-serif;
   --font-serif: var(--font-playfair), serif;

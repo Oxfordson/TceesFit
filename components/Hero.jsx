@@ -1,139 +1,183 @@
 "use client";
-import { useState, useRef } from 'react';
-import Image from 'next/image';
+import { useState, useRef } from "react";
+import Link from "next/link";
 
 export default function Hero() {
-  const useVideoBackground = true;
+  const [activeTab, setActiveTab] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef(null);
+  
+  // Three curated video pillars highlighting the breadth of Tcee's Fit
+  const showcaseItems = [
+    {
+      id: "rtw",
+      label: "Ready-to-Wear",
+      tagline: "Effortless Everyday Silhouettes",
+      description: "Trendy two-piece co-ords, flowy palazzos, and tailored pants designed for comfort.",
+      videoSrc: "/videos/hero-rtw.mp4",
+      poster: "/images/hero-rtw-fallback.jpg",
+    },
+    {
+      id: "owanbe",
+      label: "Owanbe & Occasion",
+      tagline: "Statement Bubu & Grand Silhouettes",
+      description: "Bespoke elegance crafted to turn heads at every celebration and milestone.",
+      videoSrc: "/videos/hero-owanbe.mp4",
+      poster: "/images/hero-owanbe-fallback.jpg",
+    },
+    {
+      id: "kiddies",
+      label: "Little Tcee’s",
+      tagline: "Adorable Kiddies Fashion",
+      description: "Charming, comfortable gowns, smart skirts, and trousers made for girls.",
+      videoSrc: "/videos/hero-kiddies.mp4",
+      poster: "/images/hero-kiddies-fallback.jpg",
+    },
+  ];
+
+  // Video element refs to sync muting across panes
+  const videoRefs = [useRef(null), useRef(null), useRef(null)];
 
   const toggleSound = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    videoRefs.forEach((ref) => {
+      if (ref.current) ref.current.muted = nextMuted;
+    });
   };
 
-  const whatsappNumber = "2347078617494";
+  const whatsappNumber = "2348167762470";
   const defaultMessage = encodeURIComponent(
-    "Hello Kunmi Luxe! ✨ I would like to book an appointment."
+    "Hello Tcee's Fit! ✨ I would like to explore your collections and place an order."
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${defaultMessage}`;
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 pb-16">
-      {/* Background Media Container */}
-      <div className="absolute inset-0 z-0">
-        {useVideoBackground ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted={isMuted}
-            playsInline
-            poster="/images/hero-fallback.jpg"
-            className="w-full h-full object-cover object-center scale-105 transition-transform duration-700"
+    <section className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-brand-dark text-white pt-24 pb-8 sm:pt-28 sm:pb-12">
+      {/* ================= MULTI-VIDEO RUNWAY BACKGROUND ================= */}
+      <div className="absolute inset-0 z-0 flex">
+        {showcaseItems.map((item, index) => (
+          <div
+            key={item.id}
+            className={`relative h-full transition-all duration-700 ease-in-out overflow-hidden ${
+              // On mobile, show only active tab. On desktop (md+), display 3-column split view
+              activeTab === index ? "w-full md:w-1/3 opacity-100" : "hidden md:block md:w-1/3 opacity-90"
+            }`}
           >
-            <source src="/videos/hero.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          <Image
-            src="/images/hero-fallback.jpg"
-            alt="Kunmi Luxe Luxury Hair Extensions"
-            fill
-            priority
-            quality={95}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        )}
+            <video
+              ref={videoRefs[index]}
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
+              poster={item.poster}
+              className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.05] transition-transform duration-1000 hover:scale-105"
+            >
+              <source src={item.videoSrc} type="video/mp4" />
+            </video>
 
-        {/* Video Overlay with warm champagne accent */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/70"></div>
-        <div className="absolute inset-0 bg-brand-dark/20 mix-blend-multiply pointer-events-none"></div>
+            {/* Subtle column divider & gold sheen border */}
+            <div className="hidden md:block absolute inset-y-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-brand-gold/30 to-transparent pointer-events-none" />
+          </div>
+        ))}
+
+        {/* Global Dark Gradient & Vignette Overlay for Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/75 pointer-events-none" />
       </div>
 
-      {/* Interactive Sound Control Button */}
-      {useVideoBackground && (
-        <button
-          onClick={toggleSound}
-          type="button"
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-          className="absolute bottom-8 right-6 sm:right-10 z-30 flex items-center space-x-2 bg-black/40 hover:bg-black/70 backdrop-blur-md border border-brand-gold/30 text-white px-4 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-lg active:scale-95 cursor-pointer"
-        >
-          {isMuted ? (
-            <>
-              <svg className="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-              </svg>
-              <span>Tap for Sound</span>
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4 text-brand-gold animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-              </svg>
-              <span>Mute</span>
-            </>
-          )}
-        </button>
-      )}
+      {/* ================= SOUND TOGGLE ================= */}
+      <button
+        onClick={toggleSound}
+        type="button"
+        aria-label={isMuted ? "Unmute video sound" : "Mute video sound"}
+        className="absolute top-28 right-5 sm:right-8 z-30 flex items-center space-x-2 bg-black/50 hover:bg-black/80 backdrop-blur-md border border-brand-gold/40 text-white px-3.5 py-1.5 rounded-full text-[11px]  tracking-widest transition-all duration-300 shadow-md active:scale-95"
+      >
+        <span className={`w-2 h-2 rounded-full ${isMuted ? "bg-white/40" : "bg-brand-gold animate-ping"}`} />
+        <span>{isMuted ? "Audio Off" : "Audio On"}</span>
+      </button>
 
-      {/* Main Hero Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 w-full max-w-5xl mx-auto flex flex-col items-center">
+      {/* ================= CENTER CONTENT ================= */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-8 my-auto flex flex-col items-center text-center">
         
-        {/* Location Tag */}
-        <span className="text-white uppercase tracking-[0.25em] md:tracking-[0.35em] text-xs md:text-sm font-medium mb-6 px-5 py-2 bg-black/40 backdrop-blur-md border border-brand-gold/30 rounded-full inline-flex items-center shadow-lg">
-          <span className="text-brand-gold mr-1.5">📍</span> Lagos, Nigeria
-        </span>
-        
-        {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white mb-6 leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-          Luxury quality. <br className="hidden sm:block" />
-          <span className="italic font-light text-brand-gold-light">Beautifully you.</span>
-        </h1>
-        
-        {/* Subtitle */}
-        <p className="text-white/90 text-base sm:text-lg md:text-xl mb-10 max-w-2xl font-light px-2 leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          Lagos’ premier destination for hair extensions, flawless luxury installs, and wig revamps. Made to blend, made to last, made for you.
-        </p>
-
-        {/* Core Services Badges */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12 w-full max-w-3xl">
-          {['Hair Extensions', 'Luxury Installs', 'Wig Revamps'].map((service, i) => (
-            <div 
-              key={i} 
-              className="flex items-center space-x-2 bg-black/40 backdrop-blur-md px-4 py-2.5 rounded-full shadow-md border border-brand-gold/25 text-white"
-            >
-              <svg className="w-4 h-4 text-brand-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              <span className="text-xs sm:text-sm md:text-base font-medium tracking-wide whitespace-nowrap">
-                {service}
-              </span>
-            </div>
-          ))}
+        {/* Origin & Brand Category Badge */}
+        <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-brand-gold/30 shadow-lg">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+          <span className="text-[11px] sm:text-xs  tracking-[0.25em] text-brand-gold-light font-medium">
+            Ready-to-Wear &bull; Custom Fit 
+          </span>
         </div>
 
-        {/* Dual Call-to-Action */}
-        <div className="flex flex-col w-full sm:w-auto sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
+        {/* Editorial Headline */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white leading-[1.08] tracking-tight max-w-4xl">
+          Elegance tailored for <br />
+          <span className="italic font-light text-brand-gold">every moment.</span>
+        </h1>
+
+        {/* Brand Promise Description */}
+        <p className="mt-5 text-sm sm:text-base md:text-lg text-white/85 max-w-2xl font-light leading-relaxed">
+          Crafting chic, comfortable, and affordable fashion for women and kids. 
+          From laid-back two-piece co-ords to show-stopping Owanbe statement pieces.
+        </p>
+
+        {/* Dual Actions */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-brand-dark hover:text-white font-bold transition-all rounded-full uppercase tracking-widest text-xs sm:text-sm text-center shadow-xl active:scale-95 duration-200"
+            className="w-full sm:w-auto px-8 py-3.5 bg-brand-gold hover:bg-brand-gold-dark text-brand-dark font-bold  tracking-[0.16em] text-xs transition-all duration-300 shadow-xl active:scale-95 text-center"
           >
-            Book Appointment
+            Order Custom Fit
           </a>
-          <a 
-            href="/#collections" 
-            className="px-8 py-4 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-brand-gold/40 text-brand-gold-light hover:text-white rounded-full transition-all uppercase tracking-widest text-xs sm:text-sm font-semibold text-center shadow-xl active:scale-95 duration-200"
+          <Link
+            href="/#collections"
+            className="w-full sm:w-auto px-8 py-3.5 bg-black/40 hover:bg-black/70 backdrop-blur-md border border-brand-gold/50 text-white hover:text-brand-gold  tracking-[0.16em] text-xs font-semibold transition-all duration-300 text-center"
           >
-            Shop Extensions
-          </a>
+            Explore Lookbook
+          </Link>
         </div>
 
+        {/* Mobile Pillar Switcher (Visible on small screens only) */}
+        <div className="flex md:hidden items-center justify-center gap-2 mt-8">
+          {showcaseItems.map((item, idx) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(idx)}
+              className={`text-[11px]  tracking-wider px-3 py-1 rounded-full border transition-all ${
+                activeTab === idx
+                  ? "bg-brand-gold text-brand-dark border-brand-gold font-semibold"
+                  : "bg-black/40 text-white/70 border-white/10"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ================= BOTTOM RUNWAY CONTROLS (DESKTOP) ================= */}
+      <div className="relative z-10 hidden md:grid grid-cols-3 max-w-6xl mx-auto w-full px-8 gap-6 border-t border-white/15 pt-6">
+        {showcaseItems.map((item, index) => (
+          <div
+            key={item.id}
+            onMouseEnter={() => setActiveTab(index)}
+            className="group cursor-pointer text-left transition-all duration-300"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px]  tracking-[0.2em] text-brand-gold font-semibold">
+                0{index + 1} &bull; {item.label}
+              </span>
+              <span className="text-white/40 group-hover:text-brand-gold group-hover:translate-x-1 transition-all text-xs">
+                &rarr;
+              </span>
+            </div>
+            <h4 className="font-serif text-sm text-white/95 mt-1 group-hover:text-brand-gold-light transition-colors">
+              {item.tagline}
+            </h4>
+            <p className="text-xs text-white/60 mt-1 line-clamp-1 font-light">
+              {item.description}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

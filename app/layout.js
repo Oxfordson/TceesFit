@@ -7,30 +7,30 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata = {
-  metadataBase: new URL('https://kunmiluxe.vercel.app'),
-  title: 'Kunmi Luxe | Premium Hair Extensions, Installs & Revamps in Lagos',
-  description: 'Lagos\' premier destination for premium hair extensions (French & Italian curls, Bone Straight), flawless luxury installs, and transformative wig revamps.',
-  keywords: 'Hair Extensions Lagos, Luxury Wig Installs Nigeria, Wig Revamps Lagos, Bone Straight Hair Nigeria, Kunmi Luxe, Premium Hair Vendor Lagos',
+  metadataBase: new URL('https://tceesfit.vercel.app'), // Update with actual domain
+  title: "Tcee's Fit | Stylish Ready-to-Wear & Owanbe Outfits in Ife",
+  description: "Based in Ife, Tcee's Fit creates stylish, comfortable, and affordable ready-to-wear outfits for females of all ages. From kiddies' clothing to trendy adult two-piece sets and bespoke Owanbe styles.",
+  keywords: 'Fashion brand Ife, Ready-to-wear Nigeria, Female fashion, Owanbe styles, Bubu gowns, Kiddies fashion, Two-piece sets, Tcee\'s Fit',
   openGraph: {
-    title: 'Kunmi Luxe | Hair Extensions, Installs & Revamps',
-    description: 'Experience the Kunmi Luxe standard in Lagos. We specialize in premium hair bundles, seamless luxury installs, and complete wig revamps.',
-    url: 'https://kunmiluxe.vercel.app',
-    siteName: 'Kunmi Luxe',
+    title: "Tcee's Fit | Stylish Ready-to-Wear & Owanbe Outfits",
+    description: "Discover stylish, comfortable, and affordable ready-to-wear outfits for females (children and adults). Perfectly crafted for everyday elegance and special Owanbe occasions.",
+    url: 'https://tceesfit.vercel.app',
+    siteName: "Tcee's Fit",
     locale: 'en_NG',
     type: 'website',
     images: [
       {
-        url: '/images/opengraph-image.png',
+        url: '/images/opengraph-image.png', // Ensure this image is updated in your public folder
         width: 1200,
         height: 630,
-        alt: 'Kunmi Luxe | Premium Hair Extensions, Installs & Revamps',
+        alt: "Tcee's Fit | Premium Fashion in Ife",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kunmi Luxe | Premium Hair Extensions, Installs & Revamps in Lagos',
-    description: 'Lagos\' premier destination for premium hair extensions, flawless luxury installs, and transformative wig revamps.',
+    title: "Tcee's Fit | Stylish Ready-to-Wear & Owanbe Outfits in Ife",
+    description: "Your go-to fashion brand in Ife for ready-to-wear, Bubu gowns, and exquisite Owanbe styles.",
     images: ['/images/opengraph-image.png'],
   },
   robots: {

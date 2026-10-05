@@ -9,103 +9,110 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/#services' },
-    { name: 'Extensions', href: '/#collections' },
-    { name: 'Reviews', href: '/#testimonials' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Ready-to-Wear', href: '/#collections' },
+    { name: 'Owanbe Styles', href: '/#services' },
+    { name: 'About', href: '/#about' },
   ];
 
   const socialLinks = [
     {
       name: 'Instagram',
-      href: 'https://instagram.com/kunmiluxe',
+      href: 'https://instagram.com/tceesfit',
       icon: (
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </svg>
       )
     },
     {
-      name: 'TikTok',
-      href: 'https://tiktok.com/@kunmiluxe',
-      icon: (
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-        </svg>
-      )
-    },
-    {
       name: 'Email',
-      href: 'mailto:kunmikunmi30@gmail.com',
+      href: 'mailto:contact@tceesfit.com',
       icon: (
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
       )
     }
   ];
 
-  const whatsappNumber = "2347078617494";
+  const whatsappNumber = "2348167762470"; 
   const defaultMessage = encodeURIComponent(
-    "Hello Kunmi Luxe! ✨ I would like to make an inquiry / book an appointment for:\n\n" +
-    "• Service/Product (Hair Extensions / Luxury Install / Wig Revamp):\n" +
-    "• Preferred Date:\n" +
+    "Hello Tcee's Fit! ✨ I would like to make an inquiry / place an order for:\n\n" +
+    "• Category (Ready-to-wear / Kiddies / Owanbe):\n" +
+    "• Specific Style (e.g., Bubu, Two-piece, Palazzo):\n" +
     "• Name:"
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${defaultMessage}`;
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-brand-light/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-3 md:py-4'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className={`fixed w-full z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-3 md:py-4'}`}>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main Navigation">
         <div className="flex justify-between items-center">
           
-          {/* Logo with negative vertical margin for prominent size without bloated nav */}
-          <Link href="/" className="flex items-center relative z-50 -my-2 md:-my-3">
+          {/* Logo Section with negative vertical margin */}
+          <Link href="/" className="flex items-center relative z-50 group -my-3 md:-my-4">
             <Image 
-              src="/images/kunmiluxe-logo.png" 
-              alt="Kunmi Luxe Logo"
-              width={400}
-              height={180}
-              className={`object-contain transition-all duration-300 h-14 sm:h-16 md:h-20 lg:h-24 w-auto ${!isScrolled ? 'brightness-0 invert' : ''}`}
+              src="/images/logowithnobg.png" 
+              alt="Tcee's Fit Logo"
+              width={260}
+              height={100}
+              className={`object-contain transition-all duration-300 group-hover:scale-105 h-14 sm:h-16 md:h-20 lg:h-24 w-auto ${
+                !isScrolled && !isMobileMenuOpen ? 'brightness-0 invert' : ''
+              }`}
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-7 items-center">
+          <div className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link) => {
               const isHash = link.href.includes('#');
-              const linkClasses = `text-sm uppercase tracking-widest font-medium hover:text-brand-gold transition-colors ${
+              const linkClasses = `text-sm  tracking-widest font-medium relative overflow-hidden group py-2 ${
                 !isScrolled ? 'text-white' : 'text-brand-dark'
               }`;
 
+              const linkContent = (
+                <>
+                  <span className="relative z-10 group-hover:text-brand-gold transition-colors duration-300">{link.name}</span>
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-gold transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                </>
+              );
+
               return isHash ? (
                 <a key={link.name} href={link.href} className={linkClasses}>
-                  {link.name}
+                  {linkContent}
                 </a>
               ) : (
                 <Link key={link.name} href={link.href} prefetch={false} className={linkClasses}>
-                  {link.name}
+                  {linkContent}
                 </Link>
               );
             })}
 
             {/* Desktop Social Icons */}
-            <div className={`flex items-center space-x-3 pl-2 border-l ${!isScrolled ? 'border-white/30 text-white' : 'border-brand-dark/20 text-brand-dark'}`}>
+            <div className={`flex items-center space-x-4 pl-4 border-l ${!isScrolled ? 'border-white/30 text-white' : 'border-brand-dark/20 text-brand-dark'}`}>
               {socialLinks.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   target={item.name === 'Email' ? undefined : '_blank'}
                   rel={item.name === 'Email' ? undefined : 'noopener noreferrer'}
-                  aria-label={item.name}
-                  className="p-1.5 hover:text-brand-gold hover:scale-110 transition-all duration-200"
+                  aria-label={`Follow us on ${item.name}`}
+                  className="hover:text-brand-gold hover:-translate-y-1 transition-transform duration-300"
                 >
                   {item.icon}
                 </a>
@@ -116,57 +123,68 @@ export default function Navbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`px-5 py-2 border-2 transition-all rounded-full text-xs uppercase tracking-wider font-semibold
+              className={`px-6 py-2.5 border-2 transition-all duration-300 ease-in-out rounded-none text-xs  tracking-[0.15em] font-bold
                 ${!isScrolled 
-                  ? 'border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-dark' 
-                  : 'border-brand-gold text-brand-dark hover:bg-brand-gold hover:text-white'}`}
+                  ? 'border-brand-gold bg-brand-gold text-brand-dark hover:bg-transparent hover:text-brand-gold' 
+                  : 'border-brand-dark bg-brand-dark text-brand-light hover:bg-brand-gold hover:border-brand-gold hover:text-brand-dark'}`}
             >
-              Book Now
+              Shop Now
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden relative z-50 p-2"
+            className="md:hidden relative z-50 p-2 text-brand-dark"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Toggle navigation menu"
           >
-            <svg className={`w-7 h-7 transition-colors ${!isScrolled && !isMobileMenuOpen ? 'text-white' : 'text-brand-dark'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-            </svg>
+            <div className="w-6 h-5 flex flex-col justify-between items-end">
+              <span className={`h-0.5 bg-current transition-all duration-300 ${!isScrolled && !isMobileMenuOpen ? 'bg-white' : 'bg-brand-dark'} ${isMobileMenuOpen ? 'w-6 rotate-45 translate-y-2.5' : 'w-6'}`}></span>
+              <span className={`h-0.5 bg-current transition-all duration-300 ${!isScrolled && !isMobileMenuOpen ? 'bg-white' : 'bg-brand-dark'} ${isMobileMenuOpen ? 'opacity-0' : 'w-4'}`}></span>
+              <span className={`h-0.5 bg-current transition-all duration-300 ${!isScrolled && !isMobileMenuOpen ? 'bg-white' : 'bg-brand-dark'} ${isMobileMenuOpen ? 'w-6 -rotate-45 -translate-y-2' : 'w-5'}`}></span>
+            </div>
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
-        <div className={`md:hidden fixed inset-0 bg-brand-light z-40 transition-transform duration-300 ease-in-out flex flex-col justify-center items-center space-y-6 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          {navLinks.map((link) => {
-            const isHash = link.href.includes('#');
-            const mobileClasses = "text-brand-dark uppercase tracking-[0.2em] text-lg font-medium hover:text-brand-gold transition-colors";
+        {/* Mobile Navigation Drawer */}
+        <div 
+          className={`md:hidden fixed inset-0 bg-brand-light/95 backdrop-blur-xl z-40 transition-all duration-500 ease-[0.22,1,0.36,1] flex flex-col justify-center px-8 ${
+            isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'
+          }`}
+        >
+          <div className="flex flex-col space-y-6">
+            {navLinks.map((link, index) => {
+              const isHash = link.href.includes('#');
+              const mobileClasses = `text-brand-dark  tracking-[0.15em] text-2xl font-serif hover:text-brand-gold transition-colors delay-${index * 100}`;
 
-            return isHash ? (
-              <a 
-                key={link.name} 
-                href={link.href}
-                className={mobileClasses}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ) : (
-              <Link 
-                key={link.name} 
-                href={link.href}
-                prefetch={false}
-                className={mobileClasses}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
+              return isHash ? (
+                <a 
+                  key={link.name} 
+                  href={link.href}
+                  className={mobileClasses}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link 
+                  key={link.name} 
+                  href={link.href}
+                  prefetch={false}
+                  className={mobileClasses}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 h-px w-full bg-brand-dark/10"></div>
 
           {/* Mobile Social Icons */}
-          <div className="flex items-center space-x-6 pt-2 pb-2 text-brand-dark">
+          <div className="flex items-center space-x-6 pt-8 pb-8 text-brand-dark">
             {socialLinks.map((item) => (
               <a
                 key={item.name}
@@ -174,7 +192,7 @@ export default function Navbar() {
                 target={item.name === 'Email' ? undefined : '_blank'}
                 rel={item.name === 'Email' ? undefined : 'noopener noreferrer'}
                 aria-label={item.name}
-                className="w-10 h-10 rounded-full border border-brand-dark/20 flex items-center justify-center hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all"
+                className="hover:text-brand-gold transition-colors"
               >
                 {item.icon}
               </a>
@@ -185,13 +203,13 @@ export default function Navbar() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 bg-brand-gold text-brand-dark font-bold rounded-full uppercase tracking-widest text-sm shadow-md active:scale-95"
+            className="w-full text-center py-4 bg-brand-dark text-brand-light font-bold  tracking-widest text-sm hover:bg-brand-gold hover:text-brand-dark transition-colors active:scale-95"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Book Now
+            Start Your Order
           </a>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
